@@ -77,10 +77,8 @@ wtMean
 
 ``` r
 ggplot(wtMean, aes(year,lifeExp)) +
-  geom_smooth(aes(colour=continent))
+  geom_smooth(method = 'loess',aes(colour=continent))
 ```
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
@@ -112,9 +110,80 @@ gapminder %>%
 ``` r
 ggplot(gapminder, aes(year,lifeExp)) +
   geom_point(aes(colour=continent),alpha=0.1) +
-  geom_smooth(aes(colour=continent))
+  geom_smooth(method = 'loess',aes(colour=continent))
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-7-1.png) \#\# Find countries with interesting stories. Open-ended and, therefore, hard. Promising but unsuccessful attempts are encouraged. This will generate interesting questions to follow up on in class.
 
-![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-7-1.png)
+``` r
+popMean <- gapminder %>% 
+  group_by(country,year,continent) %>% 
+  filter(pop > 50000000) %>%  
+  summarise(pop=mean(pop))
+popMean
+```
+
+    ## # A tibble: 190 x 4
+    ## # Groups:   country, year [?]
+    ##    country     year continent       pop
+    ##    <fct>      <int> <fct>         <dbl>
+    ##  1 Bangladesh  1957 Asia       51365468
+    ##  2 Bangladesh  1962 Asia       56839289
+    ##  3 Bangladesh  1967 Asia       62821884
+    ##  4 Bangladesh  1972 Asia       70759295
+    ##  5 Bangladesh  1977 Asia       80428306
+    ##  6 Bangladesh  1982 Asia       93074406
+    ##  7 Bangladesh  1987 Asia      103764241
+    ##  8 Bangladesh  1992 Asia      113704579
+    ##  9 Bangladesh  1997 Asia      123315288
+    ## 10 Bangladesh  2002 Asia      135656790
+    ## # ... with 180 more rows
+
+``` r
+ggplot(subset(popMean),
+       aes(x = year, y = pop, group = country, color = country))+
+       geom_line()
+```
+
+![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+``` r
+# Mean <- gapminder %>% 
+#   group_by(country,year,continent) %>% 
+#   filter(gdpPercap > 20000) %>%  
+#   summarise(gdpPercap=mean(gdpPercap))
+# Mean
+# ggplot(subset(Mean),
+#        aes(x = year, y = gdpPercap, group = country, color = country))+
+#        geom_line()
+Mean <- gapminder %>% 
+  group_by(country,year) %>% 
+  filter(country == "Kuwait") %>%  
+  summarise(gdpPercap=mean(gdpPercap))
+Mean
+```
+
+    ## # A tibble: 12 x 3
+    ## # Groups:   country [?]
+    ##    country  year gdpPercap
+    ##    <fct>   <int>     <dbl>
+    ##  1 Kuwait   1952   108382.
+    ##  2 Kuwait   1957   113523.
+    ##  3 Kuwait   1962    95458.
+    ##  4 Kuwait   1967    80895.
+    ##  5 Kuwait   1972   109348.
+    ##  6 Kuwait   1977    59265.
+    ##  7 Kuwait   1982    31354.
+    ##  8 Kuwait   1987    28118.
+    ##  9 Kuwait   1992    34933.
+    ## 10 Kuwait   1997    40301.
+    ## 11 Kuwait   2002    35110.
+    ## 12 Kuwait   2007    47307.
+
+``` r
+ggplot(subset(Mean),
+       aes(x = year, y = gdpPercap, group = country, color = country))+
+       geom_line()
+```
+
+![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-10-1.png)
