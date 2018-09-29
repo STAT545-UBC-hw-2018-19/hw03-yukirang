@@ -1,0 +1,82 @@
+---
+title: "hw03-gapminder"
+output: github_document
+---
+## Including packages:
+```{r}
+library(gapminder)
+library(tidyverse)
+```
+## Get the maximum and minimum of GDP per capita for all continents:
+```{r}
+gdpByCont <- gapminder %>% 
+  group_by(continent) %>% 
+  summarize(gdpPercap_min = min(gdpPercap), gdpPercap_max = max(gdpPercap))
+gdpByCont
+```
+And then make a box plot to show the data above:
+```{r}
+gdpByCont %>% 
+  # gather the max and min data in one "value"
+  gather(variable,value,-continent) %>% 
+  ggplot(aes(x=continent, y=value, fill = variable)) + 
+  # make the max and min value adopt "dodge" positions in one bar plot
+  geom_col(position = position_dodge())
+  
+```
+## Compute a trimmed mean of life expectancy for different years. Or a weighted mean, weighting by population. Just try something other than the plain vanilla mean.
+```{r}
+wtMean <- gapminder %>% 
+  group_by(continent,year) %>% 
+  summarise(lifeExp=weighted.mean(lifeExp,pop))
+wtMean
+```
+```{r}
+ggplot(wtMean, aes(year,lifeExp)) +
+  geom_smooth(method = 'loess',aes(colour=continent))
+```
+
+## How is life expectancy changing over time on different continents?
+```{r}
+gapminder %>% 
+  group_by(continent,year) %>% 
+  summarise(lifeExp=mean(lifeExp))
+```
+
+```{r}
+ggplot(gapminder, aes(year,lifeExp)) +
+  geom_point(aes(colour=continent),alpha=0.1) +
+  geom_smooth(method = 'loess',aes(colour=continent))
+```
+## Find countries with interesting stories. Open-ended and, therefore, hard. Promising but unsuccessful attempts are encouraged. This will generate interesting questions to follow up on in class.
+```{r}
+popMean <- gapminder %>% 
+  group_by(country,year,continent) %>% 
+  filter(pop > 50000000) %>%  
+  summarise(pop=mean(pop))
+popMean
+```
+```{r}
+ggplot(subset(popMean),
+       aes(x = year, y = pop, group = country, color = country))+
+       geom_line()
+```
+```{r}
+# Mean <- gapminder %>% 
+#   group_by(country,year,continent) %>% 
+#   filter(gdpPercap > 20000) %>%  
+#   summarise(gdpPercap=mean(gdpPercap))
+# Mean
+# ggplot(subset(Mean),
+#        aes(x = year, y = gdpPercap, group = country, color = country))+
+#        geom_line()
+Mean <- gapminder %>% 
+  group_by(country,year) %>% 
+  filter(country == "Kuwait") %>%  
+  summarise(gdpPercap=mean(gdpPercap))
+Mean
+ggplot(subset(Mean),
+       aes(x = year, y = gdpPercap, group = country, color = country))+
+       geom_line()
+```
+
