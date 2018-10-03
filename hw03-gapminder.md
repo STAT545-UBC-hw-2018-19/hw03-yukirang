@@ -155,7 +155,7 @@ popMean
     ## 10 Bangladesh  2002 Asia      135656790
     ## # ... with 180 more rows
 
-NOw making a plot of the popolation growth in different countries:
+Now I want to make a plot of the popolation growth in different countries:
 
 ``` r
 ggplot(subset(popMean),
