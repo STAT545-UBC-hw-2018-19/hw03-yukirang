@@ -70,6 +70,7 @@ ggplot(subset(popMean),
        aes(x = year, y = pop, group = country, color = country))+
        geom_line()
 ```
+
 The graph shows two specific countries with a high population growing speed: China and India. 
 
 Then I'm trying to do something with the 'gdpPercap' variable. First make a table to show the values with gdpPercap larger than 20000:
@@ -86,10 +87,11 @@ ggplot(subset(Mean),
        aes(x = year, y = gdpPercap, group = country, color = country))+
        geom_line()
 ```
+
 From which I found the gdpPercap in Kuwait was very high at first, how ever it changed dramatically afterwards and went trough a rapidly drop between 1970s and 1980s. I did some searches and found from [Kuwait’s Souk al-Manakh Stock Bubble](http://www.thebubblebubble.com/souk-al-manakh/) that in this period it 
 > experienced a major economic crisis after the Souk Al-Manakh stock market crash and decrease in oil price.
 
-##But I want to do more:
+## But I want to do more:
 I want to get table and figure side-by-side. I found the grid.arrage() function, which is in the 'gridExtra' library to make the layout in a grid view. For this situation, I just need to make the table and plot in 2 different columns.
 (I reused the max-min 'gdpByCont' table from the first section.)
 ```{r} 

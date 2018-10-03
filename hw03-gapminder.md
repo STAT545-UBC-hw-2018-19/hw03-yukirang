@@ -163,7 +163,9 @@ ggplot(subset(popMean),
        geom_line()
 ```
 
-![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-9-1.png) The graph shows two specific countries with a high population growing speed: China and India.
+![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-9-1.png)
+
+The graph shows two specific countries with a high population growing speed: China and India.
 
 Then I'm trying to do something with the 'gdpPercap' variable. First make a table to show the values with gdpPercap larger than 20000:
 
@@ -199,7 +201,9 @@ ggplot(subset(Mean),
        geom_line()
 ```
 
-![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-11-1.png) From which I found the gdpPercap in Kuwait was very high at first, how ever it changed dramatically afterwards and went trough a rapidly drop between 1970s and 1980s. I did some searches and found from [Kuwait’s Souk al-Manakh Stock Bubble](http://www.thebubblebubble.com/souk-al-manakh/) that in this period it &gt; experienced a major economic crisis after the Souk Al-Manakh stock market crash and decrease in oil price.
+![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-11-1.png)
+
+From which I found the gdpPercap in Kuwait was very high at first, how ever it changed dramatically afterwards and went trough a rapidly drop between 1970s and 1980s. I did some searches and found from [Kuwait’s Souk al-Manakh Stock Bubble](http://www.thebubblebubble.com/souk-al-manakh/) that in this period it &gt; experienced a major economic crisis after the Souk Al-Manakh stock market crash and decrease in oil price.
 
 But I want to do more:
 ----------------------
