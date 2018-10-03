@@ -203,7 +203,9 @@ ggplot(subset(Mean),
 
 ![](hw03-gapminder_files/figure-markdown_github/unnamed-chunk-11-1.png)
 
-From which I found the gdpPercap in Kuwait was very high at first, how ever it changed dramatically afterwards and went trough a rapidly drop between 1970s and 1980s. I did some searches and found from [Kuwait’s Souk al-Manakh Stock Bubble](http://www.thebubblebubble.com/souk-al-manakh/) that in this period it &gt; experienced a major economic crisis after the Souk Al-Manakh stock market crash and decrease in oil price.
+From which I found the gdpPercap in Kuwait was very high at first, how ever it changed dramatically afterwards and went trough a rapidly drop between 1970s and 1980s. I did some searches and found from [Kuwait’s Souk al-Manakh Stock Bubble](http://www.thebubblebubble.com/souk-al-manakh/) that in this period it
+
+> experienced a major economic crisis after the Souk Al-Manakh stock market crash and decrease in oil price.
 
 But I want to do more:
 ----------------------
